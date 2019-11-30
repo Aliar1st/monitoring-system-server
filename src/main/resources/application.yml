@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://ALIAR-PC\SQLEXPRESS:1433;database=monitoring_system
+    username: monsys
+    password: monsys
+    platform: mssql
+    initialization-mode: embedded
+    sqlScriptEncoding: UTF-8
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+    data: classpath:data-1-tests.sql,classpath:data-2-mkb10.sql,classpath:data-3-init.sql
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
+        format_sql: true
+        generate_statistics: false
+        order_inserts: true
+        jdbc:
+          batch_size: 50
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  mvc:
+    servlet:
+      path: /api
+server:
+  error:
+    include-stacktrace: always
+  port: 1488
+security:
+  jwt:
+    secret: J@NcRfUjXn2r5u8x/A?D*G-KaPdSgVkYp3s6v9y$B&E)H+MbQeThWmZq4t7w!z%C}
+    expiration: 604800000 # a week
+file_storage: E:\Projects\monitoring-system-server\src\storage\
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: trace
